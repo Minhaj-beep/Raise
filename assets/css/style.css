@@ -5781,6 +5781,7 @@ select {
 .single-hero-slider--background {
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: center center;
 }
 .single-hero-slider--overlay:before {
   position: absolute;
@@ -5788,8 +5789,9 @@ select {
   left: 0;
   width: 100%;
   height: 100%;
+  background-position: center center;
   content: "";
-  opacity: 0.6;
+  opacity: 0.5;
   background-color: #000000;
 }
 .single-hero-slider__abs-img {
@@ -5811,6 +5813,7 @@ select {
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .single-hero-slider__abs-img {
     width: 500px;
+    background-position: center center;
   }
 }
 @media only screen and (max-width: 767px) {
@@ -5831,18 +5834,18 @@ select {
 .hero-slick-slider-wrapper .slick-active .hero-slider-content > *:nth-child(1) {
   -webkit-animation-name: fadeInBottom;
           animation-name: fadeInBottom;
-  -webkit-animation-duration: 1s;
-          animation-duration: 1s;
-  -webkit-animation-delay: 0.5s;
-          animation-delay: 0.5s;
+  -webkit-animation-duration: 2s;
+          animation-duration: 2s;
+  -webkit-animation-delay: 1s;
+          animation-delay: 1s;
 }
 .hero-slick-slider-wrapper .slick-active .hero-slider-content > *:nth-child(2) {
   -webkit-animation-name: fadeInBottom;
           animation-name: fadeInBottom;
-  -webkit-animation-duration: 1s;
-          animation-duration: 1s;
-  -webkit-animation-delay: 1.5s;
-          animation-delay: 1.5s;
+  -webkit-animation-duration: 2s;
+          animation-duration: 2s;
+  -webkit-animation-delay: 1s;
+          animation-delay: 1s;
 }
 .hero-slick-slider-wrapper .slick-active .hero-slider-content > *:nth-child(3) {
   -webkit-animation-name: fadeInBottom;
@@ -7520,6 +7523,11 @@ blockquote.blockquote .author {
 
 .add-space {
   margin-top: 100px;
+}
+
+.black-white {
+  -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+  filter: grayscale(100%);
 }
 
 @media only screen and (max-width: 990px) {
