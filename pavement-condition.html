@@ -36,8 +36,76 @@
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-   <!--====================  header area ====================-->
-   <div class="header-area header-sticky bg-img space__inner--y40 background-repeat--x background-color--light d-none d-lg-block" data-bg="assets/img/icons/ruler.webp">
+   <!-- Popup Modal -->
+   <div id="popupModal" class="popup">
+    <div class="popup-content">
+        <span style="font-size: 44px; margin-bottom: 20px;" class="close">&times;</span>
+        <div class="service-item-wrapper ">
+            <div class="row justify-content-center">
+                <div class="col-lg-4 col-md-6 col-12  space__bottom--15">
+                    <a href="pavement-condition.html">
+                        <div class="service-grid-item">
+                            <div class="service-grid-item__image">
+                                <div class="service-grid-item__image-wrapper overlay-container">
+                                    <a href="#">
+                                        <img  width="90%" src="assets/img/service/pavement1.png" alt="">
+                                    </a>
+                                    <a href="pavement-condition.html">
+
+                                        <div class="overlay">
+                                            <p>Pavement Condition Assessment</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-md-6 col-12  space__bottom--15">
+                    <a href="pavement-makings.html">
+                        <div class="service-grid-item">
+                            <div class="service-grid-item__image">
+                                <div class="service-grid-item__image-wrapper overlay-container">
+                                    <a>
+                                        <img  width="90%" src="assets/img/service/pavement2.png" alt="">
+                                    </a>
+                                    <a href="pavement-makings.html">
+
+                                        <div class="overlay">
+                                            <p>Pavement markings</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-md-6 col-12  space__bottom--15">
+                    <a href="road-furniture.html">
+                        <div class="service-grid-item">
+                            <div class="service-grid-item__image">
+                                <div class="service-grid-item__image-wrapper overlay-container">
+                                    <a>
+                                        <img  width="90%" src="assets/img/service/road-furniture.png" alt="">
+                                    </a>
+                                    <a href="road-furniture.html">
+
+                                        <div class="overlay">
+                                            <p>Road Furniture</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--====================  header area ====================-->
+<div class="header-area header-sticky bg-img space__inner--y40 background-repeat--x background-color--light d-none d-lg-block" data-bg="assets/img/icons/ruler.webp">
     <!-- header top -->
     <div class="header-top">
         <div class="container">
@@ -80,14 +148,15 @@
                                         <nav class="main-nav-menu">
                                             <ul class="d-flex justify-content-end">
                                                 <li><a href="index.html">Home</a></li>
-                                                <li class="has-sub-menu">
+                                                <li id="openPopup"><a  id="openPopup">Solutions</a></li>
+                                                <!-- <li class="has-sub-menu">
                                                     <a href="project.html">Solutions</a>
                                                     <ul class="sub-menu">
                                                         <li><a href="pavement-condition.html">Pavement Condition Assessment</a></li>
                                                         <li><a href="pavement-makings.html">Pavement markings</a></li>
                                                         <li><a href="road-furniture.html">Road Furniture</a></li>
                                                     </ul>
-                                                </li>
+                                                </li> -->
                                                 <!-- <li class="has-sub-menu">
                                                     <a href="project.html">Industries</a>
                                                     <ul class="sub-menu">
@@ -99,8 +168,8 @@
                                                 <li><a href="careers.html">Careers</a></li>
                                             </ul>
                                         </nav>
-                                        <div class="row" style="justify-content: flex-end; padding-right: 15px; margin-left: 30px;">
-                                            <a href="index.html#demo-section" style="width: 150px; text-align: center;" class="default-btn-demo">Book a Demo</a>
+                                        <div class="row"  style="justify-content: flex-end; padding-right: 15px; margin-left: 30px;">
+                                            <a href="index.html#demo-section" id="scrollToSection" style="width: 150px; text-align: center;" class="default-btn-demo">Book a Demo</a>
                                         </div> 
                                         <!-- search icon nav menu -->
                                         <!-- <div class="nav-search-icon">
@@ -154,7 +223,7 @@
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li class="menu-item-has-children">
-                        <a href="">Solutions</a>
+                        <a >Solutions</a>
                         <ul class="sub-menu-mobile">
                             <li><a href="pavement-condition.html">Pavement Condition Assessment</a></li>
                             <li><a href="pavement-makings.html">Pavement markings</a></li>
@@ -367,12 +436,17 @@
     <script src="assets/js/main.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            if (window.location.hash) {
+            // Scroll to section
+            let scrollButton = document.getElementById("scrollToSection");
+            let targetSection = document.getElementById("demo-section");
+
+            if (scrollButton && targetSection) {
+                if (window.location.hash) {
                 setTimeout(function () { // Delay to allow initial jump
                     let targetSection = document.querySelector(window.location.hash);
 
                     if (targetSection) {
-                        let offset = 100; // Adjust this based on sticky header height
+                        let offset = 100; // Adjust based on sticky header height
                         let targetPosition = targetSection.getBoundingClientRect().top + window.scrollY - offset;
 
                         window.scrollTo({
@@ -380,7 +454,31 @@
                             behavior: "smooth"
                         });
                     }
-                }, 100); // Small delay (100ms) to allow the browser to jump first
+                }, 100); // Small delay to allow browser's default jump first
+            }
+            }
+
+            // Popup logic
+            let popup = document.getElementById("popupModal");
+            let openButton = document.getElementById("openPopup");
+            let closeButton = document.querySelector(".close");
+
+            if (popup && openButton) {
+                openButton.addEventListener("click", function () {
+                    popup.style.display = "flex"; // Show popup
+                });
+
+                // Close popup when clicking the 'X' button
+                closeButton.addEventListener("click", function () {
+                    popup.style.display = "none";
+                });
+
+                // Close popup when clicking outside the box
+                window.addEventListener("click", function (event) {
+                    if (event.target === popup) {
+                        popup.style.display = "none";
+                    }
+                });
             }
         });
 
