@@ -100,7 +100,7 @@
                                                 </ul>
                                             </nav>
                                             <div class="row" style="justify-content: flex-end; padding-right: 15px; margin-left: 30px;">
-                                                <a href="" style="width: 150px; text-align: center;" class="default-btn-demo">Book a Demo</a>
+                                                <a href="index.html#demo-section" style="width: 150px; text-align: center;" class="default-btn-demo">Book a Demo</a>
                                             </div> 
                                             <!-- search icon nav menu -->
                                             <!-- <div class="nav-search-icon">
@@ -386,5 +386,26 @@
     -->
     <!-- Main JS -->
     <script src="assets/js/main.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            if (window.location.hash) {
+                setTimeout(function () { // Delay to allow initial jump
+                    let targetSection = document.querySelector(window.location.hash);
+
+                    if (targetSection) {
+                        let offset = 100; // Adjust this based on sticky header height
+                        let targetPosition = targetSection.getBoundingClientRect().top + window.scrollY - offset;
+
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: "smooth"
+                        });
+                    }
+                }, 100); // Small delay (100ms) to allow the browser to jump first
+            }
+        });
+
+
+    </script>
 </body>
 </html>

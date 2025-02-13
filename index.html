@@ -544,7 +544,7 @@
                                             </a>
                                         </div>
                                         <div class="icon">
-                                            <i class="fa fa-building-o" aria-hidden="true"></i>
+                                            <i class="fa fa-road" aria-hidden="true"></i>
                                         </div>
                                     </div>
                                     <div class="service-grid-item__content">
@@ -590,7 +590,8 @@
                                             </a>
                                         </div>
                                         <div class="icon">
-                                            <i class="fa fa-road" aria-hidden="true"></i>
+                                            <i class="fa fa-building-o" aria-hidden="true"></i>
+                                            
                                         </div>
                                     </div>
                                     <div class="service-grid-item__content">
@@ -713,7 +714,7 @@
     </div> -->
     <!--====================  End of Partnerships & Collaborations area ====================-->
         <!--====================  contact area ====================-->
-        <div class="conact-section space__bottom--r120">
+        <div id="demo-section" class="conact-section space__bottom--r120">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
@@ -871,5 +872,26 @@
     -->
     <!-- Main JS -->
     <script src="assets/js/main.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelector(".default-btn-demo").addEventListener("click", function (event) {
+                event.preventDefault(); // Prevent default anchor behavior
+
+                let targetSection = document.getElementById("demo-section"); // Change this ID accordingly
+                let offset = 100; // Adjust this value to match your sticky header height
+
+                if (targetSection) {
+                    let targetPosition = targetSection.getBoundingClientRect().top + window.scrollY - offset;
+
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: "smooth"
+                    });
+                }
+            });
+        });
+
+
+    </script>
 </body>
 </html>
