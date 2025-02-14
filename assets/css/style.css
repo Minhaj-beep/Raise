@@ -7640,3 +7640,8 @@ blockquote.blockquote .author {
   font-weight: bold;
   text-align: center;
 }
+
+.feature-content-image video {
+  display: block;
+  margin: auto;
+}
