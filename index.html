@@ -795,22 +795,43 @@
                 </div>
                 <div class="row">
                     <div class="contact-form">
-                        <form id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+                        <form id="contact-form" onsubmit="submitForm(event)">
                             <input type="hidden" name="access_key" value="da880dfa-194c-418e-8751-16e34424d4bf">
+                            
                             <div class="row row-10">
-                                <div class="col-md-6 col-12 space__bottom--20"><input name="First-Name" type="text" placeholder="First Name *" required></div>
-                                <div class="col-md-6 col-12 space__bottom--20"><input name="Last-Name" type="text" placeholder="Last Name *" required></div>
-                                <div class="col-md-6 col-12 space__bottom--20"><input name="Email" type="email" placeholder="Work Email *" required></div>
-                                <div class="col-md-6 col-12 space__bottom--20"><input name="Mobile" type="number" placeholder="Phone Number *" required></div>
-                                <div class="col-md-12 col-12 space__bottom--20"><input name="Job-Title" type="text" placeholder="Job Title *" required></div>
-                                <div class="col-md-6 col-12 space__bottom--20"><input name="City" type="text" placeholder="City *" required></div>
-                                <div class="col-md-6 col-12 space__bottom--20"><input name="State-Region" type="text" placeholder="State/Region *" required></div>
-                                <div class="col-12"><textarea name="Message" placeholder="Your Message *" required></textarea></div>
-                                <div class="col-md-12 col-12 space__bottom--20"><input name="How-to-hear" type="text" placeholder="How Did You Hear About Us? *" required></div>
-                                <div class="col-12"><button type="submit">Send Message</button></div>
+                                <div class="col-md-6 col-12 space__bottom--20">
+                                    <input name="First-Name" type="text" placeholder="First Name *" required>
+                                </div>
+                                <div class="col-md-6 col-12 space__bottom--20">
+                                    <input name="Last-Name" type="text" placeholder="Last Name *" required>
+                                </div>
+                                <div class="col-md-6 col-12 space__bottom--20">
+                                    <input name="Email" type="email" placeholder="Work Email *" required>
+                                </div>
+                                <div class="col-md-6 col-12 space__bottom--20">
+                                    <input name="Mobile" type="number" placeholder="Phone Number *" required>
+                                </div>
+                                <div class="col-md-12 col-12 space__bottom--20">
+                                    <input name="Job-Title" type="text" placeholder="Job Title *" required>
+                                </div>
+                                <div class="col-md-6 col-12 space__bottom--20">
+                                    <input name="City" type="text" placeholder="City *" required>
+                                </div>
+                                <div class="col-md-6 col-12 space__bottom--20">
+                                    <input name="State-Region" type="text" placeholder="State/Region *" required>
+                                </div>
+                                <div class="col-12">
+                                    <textarea name="Message" placeholder="Your Message *" required></textarea>
+                                </div>
+                                <div class="col-md-12 col-12 space__bottom--20">
+                                    <input name="How-to-hear" type="text" placeholder="How Did You Hear About Us? *" required>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit">Send Message</button>
+                                </div>
                             </div>
                         </form>
-                        <p class="form-message"></p>
+                        <p class="form-message"></p>                        
                     </div>
                     <div class="col-lg-8 col-12">
                     </div>
@@ -988,5 +1009,38 @@
 
 
     </script>
+    <script>
+        async function submitForm(event) {
+            event.preventDefault(); // Stop default form submission
+    
+            let form = document.getElementById("contact-form");
+            let formData = new FormData(form);
+    
+            try {
+                let response = await fetch("https://api.web3forms.com/submit", {
+                    method: "POST",
+                    body: formData
+                });
+    
+                // Try parsing the response as JSON
+                let result = await response.json();
+    
+                let messageElement = document.querySelector(".form-message");
+    
+                if (result.success) {
+                    messageElement.innerHTML = "<p style='color:green;'>Message sent successfully!</p>";
+                    form.reset(); // Reset form
+                } else {
+                    messageElement.innerHTML = "<p style='color:red;'>Error: " + result.message + "</p>";
+                }
+            } catch (error) {
+                // Handle any unexpected errors
+                document.querySelector(".form-message").innerHTML = "<p style='color:red;'>Something went wrong. Please try again.</p>";
+            }
+        }
+    </script>
+    
+    
+    
 </body>
 </html>
